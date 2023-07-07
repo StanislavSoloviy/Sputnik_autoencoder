@@ -100,6 +100,16 @@ class NeuralNetwork:
         print("Модель обучена")
         self.save()
 
+    def get_arch(self):
+        if self.__model:
+            self.__model.summary()
+        else:
+            try:
+                self.load()
+                self.__model.summary()
+            except:
+                self.create()
+
     def check(self, sp=False, SNR=0.5):
         """Проверка тренировочных данных
         sp=True - на вход модели подаём изображения через фильтр соль/перец
